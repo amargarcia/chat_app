@@ -38,7 +38,7 @@ router.post("/", (request, response) => {
     isStringProvided(request.body.message)
   ) {
     const theQuery =
-      "INSERT INTO DEMO(Name, Message) VALUES ($1, $2) RETURNING *";
+      "INSERT INTO Members(Name, Message) VALUES ($1, $2) RETURNING *";
     const values = [request.body.name, request.body.message];
 
     pool
@@ -140,7 +140,7 @@ router.put("/", (request, response) => {
     isStringProvided(request.body.name) &&
     isStringProvided(request.body.message)
   ) {
-    const theQuery = "UPDATE Demo SET message = $1 WHERE name = $2 RETURNING *";
+    const theQuery = "UPDATE Members SET message = $1 WHERE name = $2 RETURNING *";
     const values = [request.body.message, request.body.name];
 
     pool
@@ -190,7 +190,7 @@ router.put("/", (request, response) => {
  */
 router.delete("/:name", (request, response) => {
   if (isStringProvided(request.params.name)) {
-    const theQuery = "DELETE FROM Demo  WHERE name = $1 RETURNING *";
+    const theQuery = "DELETE FROM Members  WHERE name = $1 RETURNING *";
     const values = [request.params.name];
 
     pool
