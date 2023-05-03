@@ -22,6 +22,12 @@ app.use(express.json());
  */
 app.use(middleware.jsonErrorInBody);
 
+// app use from lab
+app.use('/params', require('./routes/params.js'));
+app.use('/regsql', require('./routes/regsql.js'));
+app.use('/auth', require('./routes/register.js'));
+app.use('/auth', require('./routes/signin.js'));
+
 /*
  * Return HTML for the / end point.
  * This is a nice location to document your web service API
