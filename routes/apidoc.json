@@ -1,0 +1,15 @@
+{
+    "name": "TCSS 450 Lab Web Service",
+    "version": "0.1.0",
+    "description": "The TCSS 450 Lab Web Service API Documentation",
+    "title": "Lab API Doc",
+    "url" : "localhost:5000",
+    "order": [
+      "Hello",
+      "Params",
+      "Wait",
+      "DemoSql",
+      "Auth",
+      "Phish"
+    ]
+  }
