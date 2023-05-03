@@ -1,11 +1,11 @@
 {
-  "name": "450-lab",
+  "name": "chat_app",
   "version": "1.0.0",
-  "description": "TCSS 450 Lab for creating a web service",
+  "description": "TCSS 450 project for creating a web service",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cfb3/tcss-450-web-service-starter"
+    "url": "https://github.com/amargarcia/chat_app.git"
   },
   "scripts": {
     "dev": "export NODE_ENV=dev|| set NODE_ENV=dev&& node index.js",

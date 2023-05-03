@@ -1,7 +1,7 @@
 {
-    "name": "TCSS 450 Lab Web Service",
+    "name": "TCSS 450 chat_app Web Service",
     "version": "0.1.0",
-    "description": "The TCSS 450 Lab Web Service API Documentation",
+    "description": "The TCSS 450 chat_app Web Service API Documentation",
     "title": "Lab API Doc",
     "url" : "localhost:5000",
     "order": [
