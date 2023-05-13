@@ -27,6 +27,7 @@ app.use(middleware.jsonErrorInBody);
 //app.use('/regsql', require('./routes/regsql.js'));
 app.use('/auth', require('./routes/register.js'));
 app.use('/auth', require('./routes/signin.js'));
+app.use('/weather', require('./routes/weather.js'));
 
 /*
  * Return HTML for the / end point.
