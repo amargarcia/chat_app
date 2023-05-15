@@ -1,5 +1,6 @@
 //express is the framework we're going to use to handle requests
 const express = require("express");
+const { getWeatherData } = require("../utilities/weatherUtils");
 
 //retrieve the router object from express
 const router = express.Router();
@@ -11,11 +12,50 @@ const router = express.Router();
  *
  * @apiSuccess {String} message the String: "Hello, you sent a GET request"
  */
-router.get("/", (request, response) => {
-    response.send({
-        message: "Hello, you sent a GET request",
-    });
-});
+
+// root weather route
+router.get("/", (request, response, next) => {
+        // response.send({
+        //     message: "Hello, you sent a GET request",
+        // });
+
+        // todo: handler for location -> lat/long (geocoding)
+        // https://geocoding.geo.census.gov/geocoder/Geocoding_Services_API.html
+
+        // validate input
+        if (request.params.latitude === undefined) {
+            response.status(400).send({
+                message: "Missing required information: latitude."
+            });
+        }
+        if (request.params.longitude === undefined) {
+            response.status(400).send({
+                message: "Missing required information: longitude."
+            });
+        }
+        if (isNaN(request.params.latitude)) {
+            response.status(400).send({
+                message: "Malformed parameter. latitude must be a number."
+            });
+        }
+        if (isNaN(request.params.longitude)) {
+            response.status(400).send({
+                message: "Malformed parameter. longitude must be a number."
+            });
+        }
+        next();
+    }, (request, response) => {
+        const point = { latitude: request.params.latitude, longitude: request.params.longitude };
+        response.status(201).send({
+            timePrepared: (new Date()).toISOString(),
+            properties: getWeatherData(point)
+        })
+    }
+);
+
+// location weather route
+
+// lat/long weather route
 
 /**
  * @api {post} /hello Request a Hello World message
