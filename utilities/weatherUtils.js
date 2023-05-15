@@ -8,7 +8,7 @@
  * @param {number} degrees degrees in Celsius.
  * @return {number} degrees in Fahrenheit.
  */
-const toF = (degrees) => degrees * 9/5 + 32;
+const celsiusToFahrenheit = (degrees) => degrees * 9/5 + 32;
 
 /**
  * Extracts current weather condition data from JSON objects.
@@ -20,8 +20,8 @@ const toF = (degrees) => degrees * 9/5 + 32;
  *           forecast: string}} the current weather conditions.
  */
 const getCurrentConditions = (forecastGridDataJson, forecastJson) => {
-    const maxTemp = toF(forecastGridDataJson.properties.maxTemperature.values[0].value);
-    const minTemp = toF(forecastGridDataJson.properties.minTemperature.values[0].value);
+    const maxTemp = celsiusToFahrenheit(forecastGridDataJson.properties.maxTemperature.values[0].value);
+    const minTemp = celsiusToFahrenheit(forecastGridDataJson.properties.minTemperature.values[0].value);
     const now = forecastJson.properties.periods[0];
     
     return {
