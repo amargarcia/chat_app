@@ -92,8 +92,8 @@ const getWeatherData = async (point) => {
     const pointJson = await fetch(url).then(response => response.json());
     
     const forecastGridDataUrl = pointJson.properties.forecastGridData;
-    const forecastUrl = `${forecastGridDataUrl}/forecast`;
-    const forecastHourlyUrl = `${forecastGridDataUrl}/forecast/hourly`;
+    const forecastUrl = pointJson.properties.forecast;
+    const forecastHourlyUrl = pointJson.properties.forecastHourly;
     
     const forecastGridDataJson = await fetch(forecastGridDataUrl).then(response => response.json());
     const forecastJson = await fetch(forecastUrl).then(response => response.json());
