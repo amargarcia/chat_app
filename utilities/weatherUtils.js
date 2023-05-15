@@ -1,3 +1,5 @@
+//noinspection JSUnresolvedVariable
+
 // const point = {
 //     latitude: 47.2529,
 //     longitude: -122.4443
