@@ -30,7 +30,7 @@ const getCurrentConditions = (forecastGridDataJson, forecastJson) => {
         temperature: `${now.temperature}°${now.temperatureUnit}`,
         highTemperature: `${Math.floor(maxTemp)}°${now.temperatureUnit}`,
         lowTemperature: `${Math.floor(minTemp)}°${now.temperatureUnit}`,
-        forecast: now.detailedForecast
+        forecast: now.shortForecast
     }
 }
 
