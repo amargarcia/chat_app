@@ -69,7 +69,7 @@ const getSevenDayForecast = (forecastJson) => {
         .filter(day => day.isDaytime)
         .forEach(day => {
             sevenDayForecast.push({
-                name: day.name,
+                day: day.name,
                 temperature: `${day.temperature}°${day.temperatureUnit}`,
                 forecast: day.shortForecast
             })
