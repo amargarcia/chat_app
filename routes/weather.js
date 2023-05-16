@@ -48,11 +48,17 @@ router.get("/", (request, response, next) => {
         // const point = { latitude: request.params.latitude, longitude: request.params.longitude };
         const point = { latitude: 47.2529, longitude: -122.4443 };
         getWeatherData(point).then(data => {
-            response.status(201).send({
+            //package and send the results
+            response.json({
                 timePrepared: (new Date()).toISOString(),
                 properties: data
             })
-        })
+        }).catch(error => {
+            // handle error
+            response.status(400).send({
+                message: error.detail
+            });
+        });
     }
 );
 
