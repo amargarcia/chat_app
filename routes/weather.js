@@ -23,32 +23,35 @@ router.get("/", (request, response, next) => {
         // https://geocoding.geo.census.gov/geocoder/Geocoding_Services_API.html
 
         // validate input
-        if (request.params.latitude === undefined) {
-            response.status(400).send({
-                message: "Missing required information: latitude."
-            });
-        }
-        if (request.params.longitude === undefined) {
-            response.status(400).send({
-                message: "Missing required information: longitude."
-            });
-        }
-        if (isNaN(request.params.latitude)) {
-            response.status(400).send({
-                message: "Malformed parameter. latitude must be a number."
-            });
-        }
-        if (isNaN(request.params.longitude)) {
-            response.status(400).send({
-                message: "Malformed parameter. longitude must be a number."
-            });
-        }
+        // if (request.params.latitude === undefined) {
+        //     response.status(400).send({
+        //         message: "Missing required information: latitude."
+        //     });
+        // }
+        // if (request.params.longitude === undefined) {
+        //     response.status(400).send({
+        //         message: "Missing required information: longitude."
+        //     });
+        // }
+        // if (isNaN(request.params.latitude)) {
+        //     response.status(400).send({
+        //         message: "Malformed parameter. latitude must be a number."
+        //     });
+        // }
+        // if (isNaN(request.params.longitude)) {
+        //     response.status(400).send({
+        //         message: "Malformed parameter. longitude must be a number."
+        //     });
+        // }
         next();
     }, (request, response) => {
-        const point = { latitude: request.params.latitude, longitude: request.params.longitude };
-        response.status(201).send({
-            timePrepared: (new Date()).toISOString(),
-            properties: getWeatherData(point)
+        // const point = { latitude: request.params.latitude, longitude: request.params.longitude };
+        const point = { latitude: 47.2529, longitude: -122.4443 };
+        getWeatherData(point).then(data => {
+            response.status(201).send({
+                timePrepared: (new Date()).toISOString(),
+                properties: data
+            })
         })
     }
 );
