@@ -87,6 +87,7 @@ const getSevenDayForecast = (forecastJson) => {
  *                   twentyFourHourForecast: {time: string, temperature: string, forecast: string}[]}>}
  *         The weather data at the given latitude/longitude point.
  */
+const { getWeatherData } = require("../utilities/weatherUtils");
 const getWeatherData = async (point) => {
     const url = `https://api.weather.gov/points/${point.latitude},${point.longitude}`;
     const pointJson = await fetch(url).then(response => response.json());
