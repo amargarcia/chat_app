@@ -19,7 +19,7 @@ router.get("/", (request, response, next) => {
         response.status(400).send({
             message: "Malformed parameter. memberId must be a number"
         })
-    } else {
+    } else { 
         next()
     }
 }, (request, response) => {
@@ -725,6 +725,39 @@ router.get("/contact/:memberId?", (request, response, next) => {
         })
 });
 
+// router.get("/search/:email",
+//      (req, res, next) => {
+//          //validate on empty body
+//          console.log("GET /search/" + req.params.email);
+//          if (!req.params.email) {
+//              res.status(400).send({
+//                  message: "Missing required information email"
+//              })
+//          }
+//          next()
+//      },
 
+//      (req, res) => {
+//          console.log("made it to query of search by email: " + req.params.email)
+//          const query = "SELECT MemberID, firstname, lastname, username, email AS searchemail FROM members WHERE email = $1";
+//          const input = String(req.params.email).toLowerCase(); //cast as a string to lowercase it
+//          const values = [input];
+//          pool
+//              .query(query, values)
+//              .then((result) => {
+//                  //res.status(200).send({
+//                  res.send({
+//                      success: true,
+//                      email: req.decoded.email,
+//                      contacts: result.rows
+//                  });
+//              })
+//              .catch((err) => {
+//                  res.status(400).send({
+//                      message: "SQL Error",
+//                      error: err,
+//                  });
+//              });
+//      });
 
 module.exports = router;

@@ -28,7 +28,10 @@ app.use(middleware.jsonErrorInBody);
 app.use('/auth', require('./routes/register.js'));
 app.use('/auth', require('./routes/signin.js'));
 app.use('/weather', require('./routes/weather.js'));
-app.use('/contacts', middleware.checkToken,  require('./routes/contacts.js'))
+app.use('/contacts', middleware.checkToken,  require('./routes/contacts.js'));
+app.use('/messages', middleware.checkToken, require('./routes/messages.js'));
+app.use('/chats', middleware.checkToken, require('./routes/chats.js'));
+app.use('/auth', middleware.checkToken, require('./routes/pushyregister.js'));
 
 /*
  * Return HTML for the / end point.
