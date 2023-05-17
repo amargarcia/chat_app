@@ -28,6 +28,7 @@ app.use(middleware.jsonErrorInBody);
 app.use('/auth', require('./routes/register.js'));
 app.use('/auth', require('./routes/signin.js'));
 app.use('/weather', require('./routes/weather.js'));
+app.use('/contacts', middleware.checkToken,  require('./routes/contacts.js'))
 
 /*
  * Return HTML for the / end point.
