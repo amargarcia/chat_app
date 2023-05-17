@@ -30,7 +30,7 @@ const getCurrentConditions = (forecastGridDataJson, forecastJson) => {
         temperature: `${now.temperature}°${now.temperatureUnit}`,
         highTemperature: `${Math.floor(maxTemp)}°${now.temperatureUnit}`,
         lowTemperature: `${Math.floor(minTemp)}°${now.temperatureUnit}`,
-        forecast: now.detailedForecast
+        forecast: now.shortForecast
     }
 }
 
@@ -87,7 +87,6 @@ const getSevenDayForecast = (forecastJson) => {
  *                   twentyFourHourForecast: {time: string, temperature: string, forecast: string}[]}>}
  *         The weather data at the given latitude/longitude point.
  */
-const { getWeatherData } = require("../utilities/weatherUtils");
 const getWeatherData = async (point) => {
     const url = `https://api.weather.gov/points/${point.latitude},${point.longitude}`;
     const pointJson = await fetch(url).then(response => response.json());
@@ -108,4 +107,3 @@ const getWeatherData = async (point) => {
 }
 
 module.exports = { getWeatherData };
-

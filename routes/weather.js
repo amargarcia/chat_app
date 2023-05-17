@@ -1,8 +1,8 @@
-// express is the framework we're going to use to handle requests
+//express is the framework we're going to use to handle requests
 const express = require("express");
 const { getWeatherData } = require("../utilities/weatherUtils");
 
-// retrieve the router object from express
+//retrieve the router object from express
 const router = express.Router();
 
 /**
@@ -14,34 +14,47 @@ const router = express.Router();
  */
 
 // root weather route
-router.get("/:latitude/:longitude", (request, response, next) => {
-  // validate input
-  const latitude = parseFloat(request.params.latitude);
-  const longitude = parseFloat(request.params.longitude);
+router.get("/", (request, response, next) => {
+        // response.send({
+        //     message: "Hello, you sent a GET request",
+        // });
 
-  if (isNaN(latitude) || isNaN(longitude)) {
-    response.status(400).send({
-      message: "Malformed parameter. Latitude and longitude must be numbers.",
-    });
-    return;
-  }
+        // todo: handler for location -> lat/long (geocoding)
+        // https://geocoding.geo.census.gov/geocoder/Geocoding_Services_API.html
 
-  const point = { latitude, longitude };
-
-  getWeatherData(point)
-    .then((weatherData) => {
-      response.status(200).send({
-        timePrepared: new Date().toISOString(),
-        properties: weatherData,
-      });
-    })
-    .catch((error) => {
-      response.status(500).send({
-        message: "An error occurred while fetching weather data.",
-        error: error.message,
-      });
-    });
-});
+        // validate input
+        // if (request.params.latitude === undefined) {
+        //     response.status(400).send({
+        //         message: "Missing required information: latitude."
+        //     });
+        // }
+        // if (request.params.longitude === undefined) {
+        //     response.status(400).send({
+        //         message: "Missing required information: longitude."
+        //     });
+        // }
+        // if (isNaN(request.params.latitude)) {
+        //     response.status(400).send({
+        //         message: "Malformed parameter. latitude must be a number."
+        //     });
+        // }
+        // if (isNaN(request.params.longitude)) {
+        //     response.status(400).send({
+        //         message: "Malformed parameter. longitude must be a number."
+        //     });
+        // }
+        next();
+    }, (request, response) => {
+        // const point = { latitude: request.params.latitude, longitude: request.params.longitude };
+        const point = { latitude: 47.2529, longitude: -122.4443 };
+        getWeatherData(point).then(data => {
+            response.status(201).send({
+                timePrepared: (new Date()).toISOString(),
+                properties: data
+            })
+        })
+    }
+);
 
 // location weather route
 
@@ -55,10 +68,9 @@ router.get("/:latitude/:longitude", (request, response, next) => {
  * @apiSuccess {String} message the String: "Hello, you sent a POST request"
  */
 router.post("/", (request, response) => {
-  response.send({
-    message: "Hello, you sent a POST request",
-  });
+    response.send({
+        message: "Hello, you sent a POST request",
+    });
 });
-
 // "return" the router
 module.exports = router;
